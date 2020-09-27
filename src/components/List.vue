@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'ListModule',
+  name: 'vmList',
   components: {
     'card': () => import('./ViewCard'),
     'list': () => import('./ViewRow')

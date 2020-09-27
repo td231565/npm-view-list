@@ -1,4 +1,5 @@
 # @Multi-view-list/vue
+[Demo Page](https://td231565.github.io/npm-view-list/)
 
 ## Dependancy
 * Font-Awesome 5
@@ -52,25 +53,25 @@ on-edit         |          click edit icon | Object, Number
 on-delete       |        click delete icon | Object, Number   
 
 ## Config
-```
-config: {
-	title: {
-    key: 'keyname', // refer to item data's key
-    align: 'left' // text-align: `left`, `center`, `right`. default: left
-  }, 
-	image: 'keyname', // refer to item data's key
-	content: {
-    // if you set render function, ignore other attribute.
-    render: (params) => { // `params` is item data
-      // do something
-      return `your result ${params.custom.attribute}` // need to be string or es6 template string
-    }
-  },
-	footer: [ // only footer use array. Name is the title for each value.
-    { name: 'Area', key: 'area' },
-    { name: 'Category',
-      render: (params) => params.category.join(', ')
-    }
-  ]
-}
+``` javascript
+config: {  
+    title: {  
+        key: 'keyname', // refer to item data's key  
+        align: 'left' // text-align: `left`, `center`,  `right`. default: left  
+    },   
+    image: 'keyname', // refer to item data's key  
+    content: {  
+        // if you set render function, ignore other attribute.  
+        render: (params) => { // `params` is item data
+          // do something   
+          return `your result ${params.custom.attribute}` // need to be string or es6 template string   
+        }  
+    },  
+    footer: [ // only footer use array. Name is the title for each value.   
+        { name: 'Area', key: 'area' },  
+        { name: 'Category',  
+          render: (params) => params.category.join(', ')  
+        }  
+    ]  
+}  
 ```
