@@ -1,15 +1,15 @@
 # npm-list-view
 
 ## Dependancy
-```
-npm install vue-multi-view-list
-```
-
-## Dependancy
 * Font-Awesome 5
 
 ## UI
 There are 2 view mode: row, card.
+
+## Install
+```
+npm install vue-multi-view-list
+```
 
 ## Usage
 ```
