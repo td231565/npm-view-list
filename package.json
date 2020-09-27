@@ -2,7 +2,7 @@
   "name": "vue-multi-view-list",
   "description": "a Vue plugin with multiple view mode list",
   "author": "Richard <td231565@gmail.com> (https://github.com/td231565/npm-view-list)",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "main": "dist/multi-view-list.common.js",
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name multi-view-list ./src/components/index.js",
+    "build:doc": "vue-cli-service build ./src/main.js --dest docs --mode development",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

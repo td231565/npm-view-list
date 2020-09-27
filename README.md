@@ -1,4 +1,4 @@
-# npm-list-view
+# @Multi-view-list/vue
 
 ## Dependancy
 * Font-Awesome 5
