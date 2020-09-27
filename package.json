@@ -1,13 +1,16 @@
 {
-  "name": "npm-list-view",
-  "version": "0.1.0",
-  "private": true,
+  "name": "vue-multi-view-list",
+  "version": "1.0.0",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --target lib --name multi-view-list ./src/components/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.14.0",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^2.0.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },

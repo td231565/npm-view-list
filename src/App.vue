@@ -1,28 +1,69 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <List
+      :config="listConfig"
+      :data="listData"
+      default-view="card"
+      @on-click="handleClick"
+      @on-edit="handleEdit"
+      @on-delete="handleDelete" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import sourceData from '../static/data.json'
+import List from './components/List.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    List
+  },
+  data () {
+    return {
+      listConfig: {
+        // 傳入屬性可以是 STR(直接作為key)
+        image: {
+          render: (params) => params.images[0].src
+        },
+        // 也可以傳入物件
+        title: {
+          key: 'name',
+          align: 'left'
+        },
+        content: {
+          render: (params) => {
+            const contentText = params.introduction.length > 100
+              ? params.introduction.slice(0, 100).concat('...')
+              : params.introduction
+            return contentText
+          }
+        },
+        footer: [
+          { name: '地區', key: 'distric' },
+          { name: '類別',
+            render: (params) => params.category.map(c => c.name).join('、')
+          }
+        ],
+        event: 'id'
+      },
+      listData: sourceData.data
+    }
+  },
+  methods: {
+    handleEdit () {
+      alert('you click edit')
+    },
+    handleDelete () {
+      alert('you click delete')
+    },
+    handleClick () {
+      alert('you click item')
+    }
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "@/assets/style.scss";
 </style>

@@ -1,0 +1,152 @@
+$card_padding: 30px;
+$image_width: 200px;
+
+@function calcCardWidth () {
+  @return $image_width + ($card_padding * 2)
+};
+
+// default layout
+.c-list {
+  &__item {
+    padding: $card_padding;
+    border: 1px solid #eee;
+    transition: ease 0.3s;
+    &:hover {
+      box-shadow: 0 0 6px #bdbdbd;
+    }
+    &__image {
+      // 寬:高 4:3
+      width: $image_width;
+      height: $image_width * 0.75;
+      position: relative;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+    &__action {
+      &__icon {
+        cursor: pointer;
+      }
+    }
+    &__footer {
+      color: #505050;
+    }
+  }
+}
+
+// custom layout
+.c-list {
+  // card view
+  &--card {
+    @include flex(space-between);
+    flex-wrap: wrap;
+    &::after {
+      content: '';
+      flex: auto;
+    }
+    // 填充用的假卡片要跟正常的一樣大小
+    &__barrel {
+      width: $image_width;
+      margin-bottom: 20px;
+      padding-bottom: $card_padding / 2;
+    }
+    .c-list {
+      &__item {
+        @extend .c-list--card__barrel;
+        border-radius: 10px;
+        &__image {
+          &__cover {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            @include flex(center, center);
+            top: 0;
+            left: 0;
+            background-color: rgba(#000, 0.5);
+            opacity: 0;
+            transition: ease 0.5s;
+          }
+          &:hover > .c-list__item__image__cover {
+            opacity: 1;
+          }
+        }
+        &__action {
+          width: 90%;
+          @include flex(space-evenly);
+          color: rgba(#fff, 0.7);
+          font-size: 1.8rem;
+          &__icon:hover {
+            color: rgba(#fff, 0.9);
+          }
+        }
+        &__title {
+          width: $image_width;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  // list view
+  &--list {
+    display: flex;
+    flex-wrap: wrap;
+    .c-list {
+      &__item {
+        width: 100%;
+        margin:  0 0 15px 0;
+        display: flex;
+        &__main {
+          width: 100%;
+          @include flex(space-between);
+          flex-direction: column;
+        }
+        &__title {
+          > h2 {
+            margin: 0;
+          }
+        }
+        &__action {
+          color: rgba(#000, 0.5);
+          font-size: 1.2rem;
+          &__icon:hover {
+            color: rgba(#000, 0.9);
+          }
+        }
+        &__footer {
+          width: 100%;
+          @include flex(space-between, flex-end);
+          > p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// skeleton layout
+.c-list__item.skeleton {
+  .c-list__item {
+    &__image, &__main {
+      background-color: #aaa;
+    }
+  }
+}
+
+// others
+.c-list {
+  &__control {
+    margin-bottom: 0.6rem;
+    @include flex(flex-end, center);
+  }
+  &__switcher {
+    margin-left: 2px;
+    padding: 3px 8px;
+    font-size: 1rem;
+    transition: ease 0.4s;
+    cursor: pointer;
+    &--selected, &:hover {
+      background-color: #eee;
+    }
+  }
+}
