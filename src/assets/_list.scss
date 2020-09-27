@@ -7,6 +7,14 @@ $image_width: 200px;
 
 // default layout
 .c-list {
+  width: 100%;
+  // reset
+  box-sizing: border-box;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   &__item {
     padding: $card_padding;
     border: 1px solid #eee;
@@ -23,8 +31,13 @@ $image_width: 200px;
       background-repeat: no-repeat;
     }
     &__action {
+      display: flex;
       &__icon {
+        display: block;
         cursor: pointer;
+        &--edit {
+          background-image: url('/img/i-edit.svg');
+        }
       }
     }
     &__footer {
@@ -45,7 +58,7 @@ $image_width: 200px;
     }
     // 填充用的假卡片要跟正常的一樣大小
     &__barrel {
-      width: $image_width;
+      width: calcCardWidth();
       margin-bottom: 20px;
       padding-bottom: $card_padding / 2;
     }
@@ -81,6 +94,9 @@ $image_width: 200px;
         &__title {
           width: $image_width;
           margin: 0;
+        }
+        &__footer {
+          width: $image_width;
         }
       }
     }

@@ -2,7 +2,7 @@
   "name": "mv-list",
   "description": "a Vue plugin with multiple view mode list",
   "author": "Richard <td231565@gmail.com> (https://github.com/td231565/npm-view-list)",
-  "version": "1.1.1",
+  "version": "1.1.9",
   "main": "dist/multi-view-list.common.js",
   "repository": {
     "type": "git",

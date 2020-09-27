@@ -1,7 +1,7 @@
 # @Multi-view-list/vue
 [Demo Page](https://td231565.github.io/npm-view-list/)
 
-## Dependancy
+## Dependency
 * Font-Awesome 5
 
 ## UI
@@ -9,15 +9,23 @@ There are 2 view mode: row, card.
 
 ## Install
 ```
-npm install vue-multi-view-list
+npm install mv-list
 ```
 
 ## Usage
+``` javascript
+// main.js
+
+import 'mv-list/dist/multi-view-list.css'
+import mvlist from 'mv-list'
+
+Vue.use(mvlist)
 ```
-// tour-page.vue
+``` javascript
+// your-page.vue
 
 <template>
-  <List
+  <mvList
     :config="listConfig"
     :data="listData"
     default-view="card"
@@ -28,7 +36,18 @@ npm install vue-multi-view-list
 </template>
 
 <script>
-import List from 'vue-multi-view-list'
+export default {
+  data () {
+    return {
+      listConfig: {
+        // config
+      },
+      listData: [
+        // source
+      ]
+    }
+  }
+}
 </script>
 ```
 

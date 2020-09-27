@@ -27,7 +27,7 @@
       </div>
     </div>
     <!-- 用來處理最後一行卡片數量不足，約建立一行最多可能的數量 -->
-    <i class="c-list--card__barrel" aria-hidden="true" v-for="num in 8" :key="num"></i>
+    <i class="c-list--card__barrel" aria-hidden="true" v-for="num in 6" :key="num"></i>
   </div>
 </template>
 

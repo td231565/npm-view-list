@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%">
+  <div class="c-list">
     <!-- 切換VIEW -->
     <div class="c-list__control" v-if="switchView">
       <span v-for="item in viewTypes" :key="item.name"
@@ -22,11 +22,14 @@
 </template>
 
 <script>
+import ViewCard from './ViewCard'
+import ViewRow from './ViewRow'
+
 export default {
-  name: 'vmList',
+  name: 'mvList',
   components: {
-    'card': () => import('./ViewCard'),
-    'list': () => import('./ViewRow')
+    'card': ViewCard,
+    'row': ViewRow
   },
   props: {
     config: { // 使用者對欄位的設定
@@ -51,7 +54,7 @@ export default {
     },
     defaultView: { // 預設檢視方式
       type: String,
-      default: 'list'
+      default: 'row'
     }
   },
   data () {
@@ -59,7 +62,7 @@ export default {
       currentViewType: '',
       viewTypes: [
         { name: 'card', icon: 'th-large' },
-        { name: 'list', icon: 'list' }
+        { name: 'row', icon: 'list' }
       ]
     }
   },
@@ -138,3 +141,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import "../assets/style.scss";
+</style>
