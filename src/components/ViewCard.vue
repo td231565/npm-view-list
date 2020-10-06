@@ -1,6 +1,6 @@
 <template>
   <div class="c-list--card">
-    <div v-for="(item, idx) in data" :key="`item-${idx}`"
+    <div v-for="(item, idx) in modifiedData" :key="`item-${idx}`"
       class="c-list__item"
       :class="{ skeleton: item.skeleton }"
       @click="doAction('click', idx)">
@@ -9,10 +9,10 @@
         <div class="c-list__item__image__cover" v-if="isShowAction">
           <div class="c-list__item__action">
             <fa-icon icon="edit" class="c-list__item__action__icon"
-              @click="doAction('edit', idx)"
+              @click.stop="doAction('edit', idx)"
               v-if="editable" />
             <fa-icon icon="trash" class="c-list__item__action__icon"
-              @click="doAction('delete', idx)"
+              @click.stop="doAction('delete', idx)"
               v-if="deletable" />
           </div>
         </div>
@@ -27,11 +27,13 @@
       </div>
     </div>
     <!-- 用來處理最後一行卡片數量不足，約建立一行最多可能的數量 -->
-    <i class="c-list--card__barrel" aria-hidden="true" v-for="num in 6" :key="num"></i>
+    <i class="c-list--card__barrel" aria-hidden="true" v-for="num in 8" :key="num"></i>
   </div>
 </template>
 
 <script>
+import parseFunc from './utils/listDataParser'
+
 export default {
   name: 'ViewCard',
   props: {
@@ -55,14 +57,22 @@ export default {
       isShowAction: this.editable || this.deletable
     }
   },
+  computed: {
+    modifiedData () {
+      return parseFunc(this.config, this.data)
+    }
+  },
   methods: {
     /**
-     * 自訂action: 回傳 action, 被點擊的物件資料
-     * @param {String} action 動作類型
-     * @param {Number} index 被點擊的物件在原陣列的index
+     * 自訂action
+     * @param {String} action 觸發的行為
+     * @param {Number} idx 被點擊物件在原陣列的索引
      */
-    doAction (action, index) {
-      this.$emit(`on-action`, action, index)
+    doAction (action, idx) {
+      const returnValue = this.modifiedData[idx].event
+        ? this.modifiedData[idx].event.value
+        : this.data[idx]
+      this.$emit(`on-${action}`, returnValue, idx)
     }
   },
   mounted () {

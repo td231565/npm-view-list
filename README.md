@@ -13,6 +13,8 @@ npm install mv-list
 ```
 
 ## Usage
+
+#### Example
 ``` javascript
 // main.js
 
@@ -71,7 +73,7 @@ on-click        |          click list item | Object, Number
 on-edit         |          click edit icon | Object, Number   
 on-delete       |        click delete icon | Object, Number   
 
-## Config
+#### Config
 ``` javascript
 config: {  
     title: {  

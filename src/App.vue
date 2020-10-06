@@ -42,7 +42,7 @@ export default {
         footer: [
           { name: '地區', key: 'distric' },
           { name: '類別',
-            render: (params) => params.category.map(c => c.name).join('、')
+            render: (params) => params.category.map(c => c.name).slice(0, 3).join('、')
           }
         ],
         event: 'id'

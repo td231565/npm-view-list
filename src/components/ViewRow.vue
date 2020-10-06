@@ -1,6 +1,6 @@
 <template>
   <div class="c-list--list">
-    <div v-for="(item, idx) in data" :key="`item-${idx}`"
+    <div v-for="(item, idx) in modifiedData" :key="`item-${idx}`"
       class="c-list__item"
       :class="{ skeleton: item.skeleton }"
       @click="doAction('click', idx)">
@@ -21,9 +21,9 @@
           </p>
           <div class="c-list__item__action" v-if="isShowAction">
             <fa-icon icon="edit" class="c-list__item__action__icon mr-1"
-              @click="doAction('edit', idx)" v-if="editable" />
+              @click.stop="doAction('edit', idx)" v-if="editable" />
             <fa-icon icon="trash" class="c-list__item__action__icon"
-              @click="doAction('delete', idx)" v-if="deletable" />
+              @click.stop="doAction('delete', idx)" v-if="deletable" />
           </div>
         </div>
       </div>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import parseFunc from './utils/listDataParser'
+
 export default {
   name: 'ViewList',
   props: {
@@ -56,14 +58,22 @@ export default {
       isShowAction: this.editable || this.deletable
     }
   },
+  computed: {
+    modifiedData () {
+      return parseFunc(this.config, this.data)
+    }
+  },
   methods: {
     /**
-     * 自訂action: 回傳 action, 被點擊的物件資料
-     * @param {String} action 動作類型
-     * @param {Number} index 被點擊的物件在原陣列的index
+     * 自訂action
+     * @param {String} action 觸發的行為
+     * @param {Number} idx 被點擊物件在原陣列的索引
      */
-    doAction (action, index) {
-      this.$emit(`on-action`, action, index)
+    doAction (action, idx) {
+      const returnValue = this.modifiedData[idx].event
+        ? this.modifiedData[idx].event.value
+        : this.data[idx]
+      this.$emit(`on-${action}`, returnValue, idx)
     }
   },
   mounted () {
